@@ -6,6 +6,7 @@ from django.http import JsonResponse
 
 from .models import Product
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
 # Create your views here.
 
 class CreateCheckoutSessionView(View):
