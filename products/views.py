@@ -1,6 +1,8 @@
 import stripe
 from django.shortcuts import render
 from django.views import View
+from django.conf import settings
+from django.http import JsonResponse
 
 from .models import Product
 
@@ -8,6 +10,7 @@ from .models import Product
 
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
+        YOUR_DOMAIN = 'http://localhost:8000/'
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[
@@ -18,13 +21,16 @@ class CreateCheckoutSessionView(View):
                         'unit_amount': 2000,
                         'product_data': {
                             'name':'Stubborn Attachment',
-                            'images': ['https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments'],
+                            # 'images': ['https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments'],
                         },
                     },
                     'quantity': 1,
                 },
             ],
             mode='payment',
-            success_url=YOUR_DOMAIN + '/success.html',
-            cancel_url=YOUR_DOMAIN + '/cancel.html',
+            success_url=YOUR_DOMAIN + '/success/',
+            cancel_url=YOUR_DOMAIN + '/cancel/',
         )
+        return JsonResponse({
+            'id': checkout_session.id
+        })
