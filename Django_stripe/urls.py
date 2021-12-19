@@ -19,4 +19,5 @@ from products.views import CreateCheckoutSessionView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('create-checkout-session/', CreateCheckoutSessionView.as_view(), name='create-checkout-session'),
 ]
