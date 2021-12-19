@@ -126,4 +126,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-STRIPE_SECRET_KEY = ''
+STRIPE_SECRET_KEY = 'sk_test_51Jqx0YFIYgM5uAssYim24tC1MHJt9BEKUoapvNuEeImHofsaFdLOzziWfkgUFiruTmZ5lBF4Mp1R1VOMBUJaeca400RA9BNYxm'
