@@ -1,6 +1,7 @@
 import stripe
 from django.shortcuts import render
 from django.views import View
+from django.views.generic import TemplateView
 from django.conf import settings
 from django.http import JsonResponse
 
@@ -8,6 +9,10 @@ from .models import Product
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 # Create your views here.
+
+
+class ProductLandingPageView(TemplateView):
+    template_name = 'landing.html'
 
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
