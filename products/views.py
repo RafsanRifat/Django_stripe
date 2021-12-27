@@ -124,10 +124,15 @@ def stripe_webhook(request):
 class StripeIntentView(View):
     def post(self, request, *args, **kwargs):
         try:
+
             req_json = json.loads(request.body)
             customer = stripe.Customer.create(email=req_json['email'])
             product_id = self.kwargs["pk"]
             product = Product.objects.get(id=product_id)
+
+            print(req_json['email'])
+            print(product_id)
+
             intent = stripe.PaymentIntent.create(
                 amount=product.price,
                 currency='usd',
