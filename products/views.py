@@ -99,6 +99,7 @@ def stripe_webhook(request):
 
         # TODO - decide whether you want to send the file or the URL
 
+
     elif event["type"] == "payment_intent.succeeded":
         intent = event['data']['object']
 
